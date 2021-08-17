@@ -15,6 +15,7 @@
         android:ems="10"
         android:hint="@string/hint_nombre"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,6 +29,7 @@
         android:ems="10"
         android:hint="@string/hint_precio"
         android:inputType="numberDecimal"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/nombre_et"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,6 +45,7 @@
         android:gravity="start|top"
         android:hint="@string/hint_descripcion"
         android:inputType="textMultiLine"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nombre_et" />

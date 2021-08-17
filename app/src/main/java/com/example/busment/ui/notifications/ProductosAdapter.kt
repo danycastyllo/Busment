@@ -1,27 +1,48 @@
 package com.example.busment.ui.notifications
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.example.busment.R
-import kotlinx.android.synthetic.main.item_producto.view.*
 
-class ProductosAdapter(private val mContext: Context, private val listaProductos: List<Producto>) : ArrayAdapter<Producto>(mContext, 0, listaProductos) {
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+class ProductosAdapter(private val mContext: Context, private val listaProductos: List<Producto>) : RecyclerView.Adapter<ProductosAdapter.ViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layout = LayoutInflater.from(mContext).inflate(R.layout.item_producto, parent, false)
-
-        val producto = listaProductos[position]
-
-        layout.nombre.text = producto.nombre
-        layout.precio.text = "$${producto.precio}"
-
-        val imageUri = ImageController.getImageUri(mContext, producto.idProducto.toLong())
-
-        layout.imageView.setImageURI(imageUri)
-
-        return layout
+        return ViewHolder(layout)
     }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val producto = listaProductos[position]
+        holder.bind(producto, mContext)
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, ProductoActivity::class.java)
+            intent.putExtra("id", listaProductos[position].idProducto)
+            holder.itemView.context.startActivity(intent)
+        }
+    }
+
+    override fun getItemCount(): Int = listaProductos.size
+
+    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
+        private val nombre = view.findViewById<TextView>(R.id.nombre)
+        private val precio = view.findViewById<TextView>(R.id.precio)
+        private val imageView = view.findViewById<ImageView>(R.id.imageView)
+
+        fun bind(producto: Producto, mContext: Context) {
+            val imageUri = ImageController.getImageUri(mContext, producto.idProducto.toLong())
+            nombre.text = producto.nombre
+            precio.text = "$${producto.precio}"
+            imageView.setImageURI(imageUri)
+        }
+
+    }
+
 
 }

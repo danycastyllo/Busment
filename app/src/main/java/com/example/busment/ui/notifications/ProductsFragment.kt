@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.example.busment.databinding.FragmentProductsBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_products.*
@@ -41,7 +42,7 @@ class ProductsFragment : Fragment() {
         _binding = FragmentProductsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val lista: ListView = binding.lista
+        val lista: RecyclerView = binding.lista
         val button: FloatingActionButton = binding.floatingActionButton
 //        var listaProductos = listOf<Producto>()
 //        notificationsViewModel.listaProductos.observe(viewLifecycleOwner, Observer {
@@ -65,11 +66,11 @@ class ProductsFragment : Fragment() {
             lista.adapter = adapter
         })
 
-        lista.setOnItemClickListener { parent, view, position, id ->
-            val intent = Intent(lista.context, ProductoActivity::class.java)
-            intent.putExtra("id", listaProductos[position].idProducto)
-            startActivity(intent)
-        }
+//        lista.setOnItemClickListener { parent, view, position, id ->
+//            val intent = Intent(lista.context, ProductoActivity::class.java)
+//            intent.putExtra("id", listaProductos[position].idProducto)
+//            startActivity(intent)
+//        }
 
         button.setOnClickListener {
             val intent = Intent(lista.context, NuevoProductoActivity::class.java)
