@@ -10,4 +10,7 @@
     <string name="hint_precio">Precio</string>
     <string name="hint_descripcion">Descripción</string>
     <string name="bt_guardar">Guardar</string>
+    <string name="search">search</string>
+    <string name="image_product">Image</string>
+    <string name="price_value">$0.00</string>
 </resources>
