@@ -2,6 +2,10 @@ package com.example.busment.ui.notifications
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
+import android.os.Environment
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +13,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.busment.R
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import android.graphics.BitmapFactory
+
+
+
 
 class ProductosAdapter(private val mContext: Context, private val listaProductos: List<Producto>) : RecyclerView.Adapter<ProductosAdapter.ViewHolder>() {
 
@@ -37,6 +48,8 @@ class ProductosAdapter(private val mContext: Context, private val listaProductos
 
         fun bind(producto: Producto, mContext: Context) {
             val imageUri = ImageController.getImageUri(mContext, producto.idProducto.toLong())
+//            val imageBitmap = ImageController.uriToBitmap(mContext, imageUri)
+
             nombre.text = producto.nombre
             precio.text = "$${producto.precio}"
             imageView.setImageURI(imageUri)
