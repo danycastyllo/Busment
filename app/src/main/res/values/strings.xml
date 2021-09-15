@@ -13,4 +13,7 @@
     <string name="search">search</string>
     <string name="image_product">Image</string>
     <string name="price_value">$0.00</string>
+    <string name="select">Category</string>
+    <string name="rotate_image">rotate image</string>
+    <string name="select_image">select image</string>
 </resources>

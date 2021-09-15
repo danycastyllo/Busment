@@ -40,6 +40,7 @@ class ProductoActivity : AppCompatActivity() {
             nombre_producto.text = producto.nombre
             precio_producto.text = "$${producto.precio}"
             detalles_producto.text = producto.descripcion
+            category_producto.text = producto.category
         })
     }
 

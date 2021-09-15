@@ -1,24 +1,46 @@
 package com.example.busment.ui.notifications
 
+import android.R.attr
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_nuevo_producto.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import com.example.busment.R
+import android.graphics.Bitmap
+import android.graphics.Matrix
+import android.R.attr.data
+import android.os.PersistableBundle
+import java.io.ByteArrayOutputStream
+import java.io.File
+
 
 class NuevoProductoActivity : AppCompatActivity() {
-
     private val SELECT_ACTIVITY = 50
     private var imageUri: Uri? = null
+    var items = arrayOf("Bebidas", "Lacteos", "Comida", "Dulces", "Otros")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nuevo_producto)
+
+        // Initialization Category Exposed Drop-Down Menu
+        val adapterItems = ArrayAdapter(this, R.layout.list_item, items)
+        auto_complete_txt.setAdapter(adapterItems)
+
+//        auto_complete_txt.onItemClickListener =
+//            AdapterView.OnItemClickListener { parent, view, position, id ->
+//                val item = parent.getItemAtPosition(position).toString()
+//                Toast.makeText(applicationContext, "Item: $item", Toast.LENGTH_SHORT).show()
+//            }
+        //-----------------------------------------------------------------------------------------------
 
         var idProducto: Int? = null
 
@@ -28,9 +50,11 @@ class NuevoProductoActivity : AppCompatActivity() {
             nombre_et.setText(producto.nombre)
             precio_et.setText(producto.precio.toString())
             descripcion_et.setText(producto.descripcion)
+            auto_complete_txt.setText(producto.category, false)
+
             idProducto = producto.idProducto
 
-            val imageUri = ImageController.getImageUri(this, idProducto.toLong())
+            imageUri = ImageController.getImageUri(this, idProducto.toLong())
             imageSelect_iv.setImageURI(imageUri)
         }
 
@@ -38,10 +62,13 @@ class NuevoProductoActivity : AppCompatActivity() {
 
         save_btn.setOnClickListener {
             val nombre = nombre_et.text.toString()
-            val precio = precio_et.text.toString().toDouble()
-            val descripcion = descripcion_et.text.toString()
 
-            val producto = Producto(nombre, precio, descripcion, R.drawable.ic_launcher_background)
+            val precio:Double = if (precio_et.text.isNullOrEmpty()) 0.0 else precio_et.text.toString().toDouble()
+
+            val descripcion = descripcion_et.text.toString()
+            val category = auto_complete_txt.text.toString()
+
+            val producto = Producto(nombre, precio, descripcion, category, R.drawable.ic_launcher_background)
 
             if (idProducto != null) {
                 CoroutineScope(Dispatchers.IO).launch {
@@ -77,6 +104,25 @@ class NuevoProductoActivity : AppCompatActivity() {
         imageSelect_iv.setOnClickListener {
             ImageController.selectPhotoFromGallery(this, SELECT_ACTIVITY)
         }
+        rotate_btn.setOnClickListener{
+            val bit = imageUri?.let { it1 -> ImageController.uriToBitmap(this, it1) }
+            val rot = bit?.let { it1 -> ImageController.RotateBitmap(it1, 90F) }
+            imageUri = rot?.let { it1 -> ImageController.BitmapToUri(this, it1) }
+            imageSelect_iv.setImageBitmap(rot)
+
+        }
+
+        if (savedInstanceState != null){ // recupera los datos guardados en onSaveInstanceState
+            imageUri = savedInstanceState.getParcelable("uri")
+            imageSelect_iv.setImageURI(imageUri)
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) { // cuando se gira la pantalla o se reinicia la actividad guarda los datos
+        super.onSaveInstanceState(outState)
+        outState.putParcelable("uri", imageUri)
+//        val pri = imageUri.toString()
+//        Toast.makeText(applicationContext, " $pri", Toast.LENGTH_SHORT).show()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -85,8 +131,11 @@ class NuevoProductoActivity : AppCompatActivity() {
         when {
             requestCode == SELECT_ACTIVITY && resultCode == Activity.RESULT_OK -> {
                 imageUri = data!!.data
-
-                imageSelect_iv.setImageURI(imageUri)
+                val imagen = imageUri?.let { ImageController.uriToBitmap(this, it) }?.let {
+                    ImageController.compressBitmap(this, it)
+                }
+                imageUri = imagen?.let { ImageController.BitmapToUri(this, it) }
+                imageSelect_iv.setImageBitmap(imagen)
             }
         }
     }

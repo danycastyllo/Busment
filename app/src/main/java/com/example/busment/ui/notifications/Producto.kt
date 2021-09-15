@@ -9,6 +9,7 @@ class Producto(
     val nombre:String,
     val precio: Double,
     val descripcion: String,
+    val category: String,
     val imagen: Int,
     @PrimaryKey(autoGenerate = true)
     var idProducto: Int = 0
