@@ -31,7 +31,7 @@ object ImageController {
         val imageBitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri)
         return imageBitmap
     }
-    fun compressBitmap(bitmap: Bitmap):Bitmap{ // reduce el tamaño de la imagen para mayor rendimiento
+    fun compressBitmap(bitmap1: NuevoProductoActivity, bitmap: Bitmap):Bitmap{ // reduce el tamaño de la imagen para mayor rendimiento
         val ancho = bitmap.width / 10
         val largo = bitmap.height / 10
         val imagen = Bitmap.createScaledBitmap(bitmap, ancho, largo, true)

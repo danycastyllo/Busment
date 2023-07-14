@@ -1,25 +1,16 @@
 package com.example.busment.ui.notifications
 
-import android.R.attr
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_nuevo_producto.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import com.example.busment.R
-import android.graphics.Bitmap
-import android.graphics.Matrix
-import android.R.attr.data
-import android.os.PersistableBundle
-import java.io.ByteArrayOutputStream
-import java.io.File
 
 
 class NuevoProductoActivity : AppCompatActivity() {
@@ -109,6 +100,9 @@ class NuevoProductoActivity : AppCompatActivity() {
             val rot = bit?.let { it1 -> ImageController.RotateBitmap(it1, 90F) }
             imageUri = rot?.let { it1 -> ImageController.BitmapToUri(this, it1) }
             imageSelect_iv.setImageBitmap(rot)
+
+//            val actualtDBPath = getDatabasePath("app_database.db").absolutePath
+//            Toast.makeText(applicationContext, " $actualtDBPath", Toast.LENGTH_SHORT).show()
 
         }
 
