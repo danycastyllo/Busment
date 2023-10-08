@@ -11,6 +11,7 @@
         <entry key="..\:/Users/Daniel/AndroidStudioProjects/Busment/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.3828125" />
         <entry key="..\:/Users/Daniel/AndroidStudioProjects/Busment/app/src/main/res/drawable/ic_baseline_shopping_basket_24.xml" value="0.3828125" />
         <entry key="..\:/Users/Daniel/AndroidStudioProjects/Busment/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.3828125" />
+        <entry key="..\:/Users/Daniel/AndroidStudioProjects/Busment/app/src/main/res/drawable/ic_gradient_background.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/Daniel/AndroidStudioProjects/Busment/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.3828125" />
         <entry key="..\:/Users/Daniel/AndroidStudioProjects/Busment/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3828125" />
         <entry key="..\:/Users/Daniel/AndroidStudioProjects/Busment/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.3828125" />
@@ -18,6 +19,7 @@
         <entry key="..\:/Users/Daniel/AndroidStudioProjects/Busment/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/Daniel/AndroidStudioProjects/Busment/app/src/main/res/layout/activity_nuevo_producto.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Daniel/AndroidStudioProjects/Busment/app/src/main/res/layout/activity_producto.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Daniel/AndroidStudioProjects/Busment/app/src/main/res/layout/activity_retailer_start_up_screen.xml" value="0.3625" />
         <entry key="..\:/Users/Daniel/AndroidStudioProjects/Busment/app/src/main/res/layout/fragment_dashboard.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Daniel/AndroidStudioProjects/Busment/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Daniel/AndroidStudioProjects/Busment/app/src/main/res/layout/fragment_notifications.xml" value="0.36666666666666664" />
@@ -31,7 +33,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
