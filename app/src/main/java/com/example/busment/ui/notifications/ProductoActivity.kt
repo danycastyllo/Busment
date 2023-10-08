@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.example.busment.R
@@ -19,6 +20,8 @@ class ProductoActivity : AppCompatActivity() {
     private lateinit var database: AppDatabase
     private lateinit var producto: Producto
     private lateinit var productoLiveData: LiveData<Producto>
+
+    private lateinit var toolbar: Toolbar
     private val EDIT_ACTIVITY = 49
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +45,11 @@ class ProductoActivity : AppCompatActivity() {
             detalles_producto.text = producto.descripcion
             category_producto.text = producto.category
         })
+
+        // toolbar
+        toolbar = findViewById(R.id.toolbarb)
+        this.setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false); // elimina el titulo del toolbar
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

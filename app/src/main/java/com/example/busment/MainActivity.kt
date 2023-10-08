@@ -5,6 +5,7 @@ import android.view.Menu
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var database: AppDatabase
+    private lateinit var toolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity(){
         database = AppDatabase.getDatabase(this)
         val navView: BottomNavigationView = binding.navView
 
+
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -38,6 +41,9 @@ class MainActivity : AppCompatActivity(){
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_products
             )
         )
+//        toolbar = findViewById(R.id.toolbar)
+//        this.setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false); // elimina el titulo del action bar
 //        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
